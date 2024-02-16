@@ -1,6 +1,6 @@
 import { Step, StepLabel, Stepper, Typography } from "@mui/material";
 import PropTypes from "prop-types";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { FormDeliveryData } from "./FormDeliveryData";
 import { FormPersonalData } from "./FormPersonalData";
 import { FormUserData } from "./FormUserData";
@@ -36,7 +36,7 @@ const FormHandler = ({ onSubmit }) => {
     if (step === forms.length - 1) {
       onSubmit(formData);
     }
-  }, [formData, forms, step, onSubmit]);
+  }, [formData, forms.length, step, onSubmit]);
 
   const displayCorrespondentForm = (step) => {
     const form = forms[step];

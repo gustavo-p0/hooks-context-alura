@@ -38,6 +38,7 @@ const FormPersonalData = ({ onSubmit }) => {
         onChange={(e) => {
           setName(e.currentTarget.value);
         }}
+        required
       />
       <TextField
         label="Sobrenome"
@@ -49,6 +50,7 @@ const FormPersonalData = ({ onSubmit }) => {
         onChange={(e) => {
           setSurname(e.currentTarget.value);
         }}
+        required
       />
       <TextField
         label="CPF"
@@ -67,6 +69,7 @@ const FormPersonalData = ({ onSubmit }) => {
         onChange={(e) => {
           setCpf(e.currentTarget.value);
         }}
+        required
       />
       <FormControlLabel
         label="Promoções"
