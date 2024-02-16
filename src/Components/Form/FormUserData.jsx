@@ -2,27 +2,15 @@ import PropTypes from "prop-types";
 import { useContext, useState } from "react";
 import { Button, TextField } from "../../../node_modules/@mui/material/index";
 import { ValidationsContext } from "../contexts/FormValidations";
+import { useErrors } from "../hooks/useErrors";
 
 const FormUserData = ({ onSubmit }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState({
-    password: { valid: true, helperText: "" },
-  });
-
   const { validateLength } = useContext(ValidationsContext);
-  const validateInput = (event) => {
-    const { name, value } = event.target;
-    const trackedErrorInputs = { password: validateLength };
-    const newState = { ...errors };
-    newState[name] = trackedErrorInputs[name](value);
-    setErrors(newState);
-  };
-
-  const canContinue = () => {
-    const hasInvalidField = Object.values(errors).find((item) => !item.valid);
-    return !hasInvalidField;
-  };
+  const [errors, validateInput, canContinue] = useErrors({
+    password: validateLength,
+  });
 
   return (
     <form

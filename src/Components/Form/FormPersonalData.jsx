@@ -2,31 +2,20 @@ import { Button, FormControlLabel, Switch, TextField } from "@mui/material";
 import PropTypes from "prop-types";
 import { useContext, useState } from "react";
 import { ValidationsContext } from "../contexts/FormValidations";
+import { useErrors } from "../hooks/useErrors";
+
 const FormPersonalData = ({ onSubmit }) => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [cpf, setCpf] = useState("");
   const [wantPromotions, setWantPromotions] = useState(true);
   const [wantNewsletter, setWantNewsletter] = useState(false);
-
   const { validateCPF, validateLength } = useContext(ValidationsContext);
-  const [errors, setErrors] = useState({
-    cpf: { valid: true, helperText: "" },
-    name: { valid: true, helperText: "" },
+  const [errors, validateInput, canContinue] = useErrors({
+    cpf: validateCPF,
+    name: validateLength,
   });
 
-  const validateInput = (event) => {
-    const { name, value } = event.target;
-    const trackedErrorInputs = { cpf: validateCPF, name: validateLength };
-    const newState = { ...errors };
-    newState[name] = trackedErrorInputs[name](value);
-    setErrors(newState);
-  };
-
-  const canContinue = () => {
-    const hasInvalidField = Object.values(errors).find((item) => !item.valid);
-    return !hasInvalidField;
-  };
   return (
     <form
       onSubmit={(e) => {
