@@ -1,14 +1,17 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
 import { Button, TextField } from "../../../node_modules/@mui/material/index";
 
 const FormUserData = ({ onSubmit }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        onSubmit();
+        onSubmit({ email, password });
       }}
-      action=""
     >
       <TextField
         id="email"
@@ -18,6 +21,10 @@ const FormUserData = ({ onSubmit }) => {
         fullWidth
         type="email"
         required
+        value={email}
+        onChange={(e) => {
+          setEmail(e.currentTarget.value);
+        }}
       />
       <TextField
         label="Senha"
@@ -27,6 +34,8 @@ const FormUserData = ({ onSubmit }) => {
         fullWidth
         type="password"
         required
+        value={password}
+        onChange={(e) => setPassword(e.currentTarget.value)}
       />
       <Button type="submit" variant="contained" color="secondary" fullWidth>
         Prosseguir
