@@ -1,25 +1,27 @@
-# Formulário de cadastro
+# Formulário de cadastro particionado
 
-[🌐 Live Demo](https://function-components-alura.vercel.app/)
+![preview](https://github.com/gustavo-p0/hooks-context-alura/assets/83771792/c0039740-2c78-47b2-ba18-616b2be26d33)
 
-Este app foi desenvolvido como parte do curso ministrado por Ricardo Bugan Debs e Alura. A aplicação construída tem como objetivo a criação de um formulário de cadastro utilizando componentes de função do React, com ênfase na técnica de controlled forms, monitorando os inputs com estados. Destaca-se a validação intuitiva do campo de CPF e a interface desenvolvida com Material UI.
+[🌐 Live Demo](https://hooks-context-alura.vercel.app/)
 
-Página do Curso: [React: Function Components, uma abordagem moderna](https://cursos.alura.com.br/course/react-function-components)
+Este aplicativo é uma evolução deste [projeto](https://github.com/gustavo-p0/function-components-alura), desenvolvido como parte do curso "React: Hooks, Contextos e boas práticas", ministrado por Alura e Ricardo Bugan Debs. Nesta versão, o foco foi aprofundar o conhecimento em Hooks, Context API e boas práticas no desenvolvimento React.
+
+Página do Curso: [React: Hooks, Contextos e boas práticas](https://cursos.alura.com.br/course/react-hooks-e-formularios)
 
 ---
 
-## O que foi aprendido?
+## O que foi aprimorado?
 
-- **Uso Seguro de Hooks**
-  Aprendizado seguro e eficaz da utilização de Hooks no desenvolvimento React.
-- **Trabalho com Material UI**
-  Domínio das práticas para integração e utilização eficaz do Material UI na criação de interfaces.
-- **Criação de Function Components**
-  Desenvolvimento e implementação de Function Components para uma abordagem mais moderna no React.
-- **Validação de Dados em Formulários**
-  Aplicação de técnicas para validar dados em formulários, com foco na experiência do usuário.
-- **Conceitos de Formulários Controlados e Não Controlados**
-  Compreensão dos conceitos de formulários controlados e não controlados.
+- **Hooks e Boas Práticas**
+  Aprofundamento nos conceitos de Hooks, explorando diversas situações e boas práticas ao utilizá-los no desenvolvimento React.
+- **Context API para Gerenciamento de Estado**
+  Aplicação eficiente da Context API para gerenciamento de estado, proporcionando uma melhor organização e compartilhamento de dados entre componentes.
+- **Lógica de Máquina de Estados**
+  Implementação de uma lógica de máquina de estados para lidar com diferentes etapas do formulário, proporcionando uma experiência de usuário mais fluída.
+- **Validação Avançada de Dados em Formulários**
+  Aprimoramento das técnicas de validação de dados em formulários, com destaque para a validação intuitiva do campo de CPF.
+- **Boas Práticas com Propriedades**
+  Conhecimento e aplicação das melhores práticas ao trabalhar com propriedades, garantindo um código mais limpo e fácil de manter.
 
 ---
 
@@ -33,12 +35,12 @@ Página do Curso: [React: Function Components, uma abordagem moderna](https://cu
 
 ## Sobre o curso
 
-Autor do Curso: Ricardo Bugan Debs e Alura.
+Autor do Curso: Alura e Ricardo Bugan Debs.
 
 **Ementa do Curso:**
 
-- Uso Seguro de Hooks
-- Trabalho com Material UI
-- Criação de Function Components
-- Validação de Dados em Formulários
-- Conceitos de Formulários Controlados e Não Controlados
+- Aprenda mais sobre Hooks
+- Crie uma lógica de máquina de estados
+- Utilize a Context API para melhorar seu código
+- Saiba as melhores práticas ao trabalhar com propriedades
+- Conheça as técnicas de validação de dados em formulários
