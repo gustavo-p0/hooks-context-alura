@@ -1,7 +1,7 @@
 import { Button, FormControlLabel, Switch, TextField } from "@mui/material";
 import PropTypes from "prop-types";
-import { useState } from "react";
-
+import { useContext, useState } from "react";
+import { ValidationsContext } from "../contexts/FormValidations";
 const FormPersonalData = ({ onSubmit }) => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
@@ -9,22 +9,31 @@ const FormPersonalData = ({ onSubmit }) => {
   const [wantPromotions, setWantPromotions] = useState(true);
   const [wantNewsletter, setWantNewsletter] = useState(false);
 
+  const { validateCPF, validateLength } = useContext(ValidationsContext);
   const [errors, setErrors] = useState({
     cpf: { valid: true, helperText: "" },
+    name: { valid: true, helperText: "" },
   });
 
-  const validateCPF = (cpf) => {
-    if (cpf.length !== 11) {
-      return { valid: false, helperText: "CPF deve ter 11 dígitos" };
-    }
+  const validateInput = (event) => {
+    const { name, value } = event.target;
+    const trackedErrorInputs = { cpf: validateCPF, name: validateLength };
+    const newState = { ...errors };
+    newState[name] = trackedErrorInputs[name](value);
+    setErrors(newState);
+  };
 
-    return { valid: true, helperText: "" };
+  const canContinue = () => {
+    const hasInvalidField = Object.values(errors).find((item) => !item.valid);
+    return !hasInvalidField;
   };
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        onSubmit({ name, surname, cpf, wantPromotions, wantNewsletter });
+        if (canContinue) {
+          onSubmit({ name, surname, cpf, wantPromotions, wantNewsletter });
+        }
       }}
       action=""
     >
@@ -32,6 +41,10 @@ const FormPersonalData = ({ onSubmit }) => {
         label="Nome"
         id="nome"
         variant="outlined"
+        name="name"
+        onBlur={validateInput}
+        error={!errors.name.valid}
+        helperText={errors.name.helperText}
         fullWidth
         margin="normal"
         value={name}
@@ -55,17 +68,14 @@ const FormPersonalData = ({ onSubmit }) => {
       <TextField
         label="CPF"
         id="cpf"
+        name="cpf"
         variant="outlined"
         fullWidth
         error={!errors.cpf.valid}
         helperText={errors.cpf.helperText}
         margin="normal"
         value={cpf}
-        onBlur={() => {
-          setErrors({
-            cpf: validateCPF(cpf),
-          });
-        }}
+        onBlur={validateInput}
         onChange={(e) => {
           setCpf(e.currentTarget.value);
         }}

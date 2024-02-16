@@ -1,6 +1,7 @@
 import { Container, Typography } from "@mui/material";
 import "fontsource-roboto";
 import { FormHandler } from "./Components/Form";
+import { ValidationsContextProvider } from "./Components/contexts/FormValidations";
 
 const App = () => {
   const handleFormSubmit = (data) => {
@@ -16,7 +17,9 @@ const App = () => {
       >
         Formulário de cadastro
       </Typography>
-      <FormHandler onSubmit={handleFormSubmit} />
+      <ValidationsContextProvider>
+        <FormHandler onSubmit={handleFormSubmit} />
+      </ValidationsContextProvider>
     </Container>
   );
 };

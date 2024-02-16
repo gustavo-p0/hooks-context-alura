@@ -1,16 +1,36 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button, TextField } from "../../../node_modules/@mui/material/index";
+import { ValidationsContext } from "../contexts/FormValidations";
 
 const FormUserData = ({ onSubmit }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({
+    password: { valid: true, helperText: "" },
+  });
+
+  const { validateLength } = useContext(ValidationsContext);
+  const validateInput = (event) => {
+    const { name, value } = event.target;
+    const trackedErrorInputs = { password: validateLength };
+    const newState = { ...errors };
+    newState[name] = trackedErrorInputs[name](value);
+    setErrors(newState);
+  };
+
+  const canContinue = () => {
+    const hasInvalidField = Object.values(errors).find((item) => !item.valid);
+    return !hasInvalidField;
+  };
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        onSubmit({ email, password });
+        if (canContinue()) {
+          onSubmit({ email, password });
+        }
       }}
     >
       <TextField
@@ -31,6 +51,10 @@ const FormUserData = ({ onSubmit }) => {
         id="password"
         variant="outlined"
         margin="normal"
+        name="password"
+        error={!errors.password.valid}
+        helperText={errors.password.helperText}
+        onBlur={validateInput}
         fullWidth
         type="password"
         required
